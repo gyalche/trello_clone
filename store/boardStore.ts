@@ -1,4 +1,5 @@
 import { create } from 'zustand';
+import { getTodoBoardByColumn } from '../lib/getTodoBoardByColumn';
 
 interface BoardState {
   board: Board;
@@ -8,5 +9,10 @@ const useBoardStore = create<BoardState>((set) => ({
   board: {
     columns: new Map<TypedColumn, Column>(),
   },
-  getBoard: () => {},
+  getBoard: async () => {
+    const board = await getTodoBoardByColumn();
+    set({ board });
+  },
 }));
+
+export default useBoardStore;
