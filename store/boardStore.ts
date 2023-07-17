@@ -4,6 +4,7 @@ import { getTodoBoardByColumn } from '../lib/getTodoBoardByColumn';
 interface BoardState {
   board: Board;
   getBoard: () => void;
+  setBoardState: (board: Board) => void;
 }
 const useBoardStore = create<BoardState>((set) => ({
   board: {
@@ -13,6 +14,7 @@ const useBoardStore = create<BoardState>((set) => ({
     const board = await getTodoBoardByColumn();
     set({ board });
   },
+  setBoardState: (board) => set({ board }),
 }));
 
 export default useBoardStore;
